@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html lang="en-us" class="ie9 layout-pf layout-pf-fixed"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en-us" class="layout-pf layout-pf-fixed">
+<!--<![endif]-->
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertical Navigation with Notification Drawer | PatternFly</title>
+  <meta name="description" content="PatternFly is an open source web user interface framework promoting consistency and usability across IT applications through UX patterns and widgets">
+  <link rel="shortcut icon" href="/patternfly-org/components/patternfly/dist/img/favicon.ico">
+  <!-- iPad retina icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-152.png">
+  <!-- iPad retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-144.png">
+  <!-- iPad non-retina icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-76.png">
+  <!-- iPad non-retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-72.png">
+  <!-- iPhone 6 Plus icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-180.png">
+  <!-- iPhone retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-114.png">
+  <!-- iPhone non-retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/patternfly-org/components/patternfly/dist/img/apple-touch-icon-precomposed-57.png">
+  <link rel="stylesheet" href="/patternfly-org/assets/css/patternfly-adjusted.min.css">
+  <link rel="stylesheet" href="/patternfly-org/components/patternfly/dist/css/patternfly-additions.min.css">
+  <link rel="stylesheet" href="/patternfly-org/assets/css/patternfly-site.min.css">
+  
+  
+  <script src="/patternfly-org/components/jquery/dist/jquery.min.js"></script>
+  <script src="/patternfly-org/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/patternfly-org/components/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+  <script src="/patternfly-org/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+  <script src="/patternfly-org/components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <script src="/patternfly-org/components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+  <script src="/patternfly-org/components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+  <script src="/patternfly-org/components/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+  <script src="/patternfly-org/components/c3/c3.min.js"></script>
+  <script src="/patternfly-org/components/d3/d3.min.js"></script>
+  <script src="/patternfly-org/components/datatables/media/js/jquery.dataTables.js"></script>
+  <script src="/patternfly-org/components/google-code-prettify/bin/prettify.min.js"></script>
+  <script src="/patternfly-org/components/clipboard/dist/clipboard.min.js"></script>
+  <script src="/patternfly-org/components/patternfly/dist/js/patternfly.min.js"></script>
+  
+  
+  <script src="/patternfly-org/assets/js/patternfly-site.min.js"></script>
+  
+</head>
+
+  <body class="cards-pf">
+    <nav class="navbar navbar-pf-vertical">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="/" class="navbar-brand">
+      <img class="navbar-brand-icon" src="/assets/img/logo-alt.svg" alt=""/><img class="navbar-brand-name" src="/assets/img/brand-alt.svg" alt="PatternFly Enterprise Application" />
+    </a>
+  </div>
+  <nav class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="#" target="_blank" class="nav-item-iconic nav-item-iconic-new-window"><span title="Launch" class="fa fa-external-link"></span></a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right navbar-iconic">
+      <li class="drawer-pf-trigger dropdown">
+        <a class="nav-item-iconic drawer-pf-trigger-icon">
+          <span class="fa fa-bell" title="Notifications"></span><!-- In case of all notifications read, the icon should be fa-bell-o -->
+        </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span title="Help" class="fa pficon-help"></span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span title="Username" class="fa pficon-user"></span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a href="#">Preferences</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="drawer-pf hide drawer-pf-notifications-non-clickable">
+      <div class="drawer-pf-title">
+        <h3 class="text-center">Notifications Drawer</h3>
+      </div>
+      <div class="panel-group" id="notification-drawer-accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading" data-component="collapse-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#notification-drawer-accordion" href="#fixedCollapseOne">
+                Notification Tab 1
+              </a>
+            </h4>
+            <span class="panel-counter">5 New Events</span>
+          </div>
+          <div id="fixedCollapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+            </div>
+            <div class="drawer-pf-action">
+              <button class="btn btn-link btn-block"">Mark All Read</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" data-component="collapse-heading">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#notification-drawer-accordion" href="#fixedCollapseTwo">
+                Notification Tab 2
+              </a>
+            </h4>
+            <span class="panel-counter">5 New Events</span>
+          </div>
+          <div id="fixedCollapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+              <div class="drawer-pf-loading text-center">
+                <span class="spinner spinner-xs spinner-inline"></span> Loading More
+              </div>
+            </div>
+            <div class="drawer-pf-action">
+              <button class="btn btn-link btn-block"">Mark All Read</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" data-component="collapse-heading">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#notification-drawer-accordion" href="#fixedCollapseThree">
+                Notification Tab 3
+              </a>
+            </h4>
+            <span class="panel-counter">5 New Events</span>
+          </div>
+          <div id="fixedCollapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+              <div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-info pull-left"></span>
+  <span class="drawer-pf-notification-message">A New Event! Huzzah! Bold!</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification unread">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-ok pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-warning-triangle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+<div class="drawer-pf-notification">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+  <span class="pficon pficon-error-circle-o pull-left"></span>
+  <span class="drawer-pf-notification-message">Another Event Notification</span>
+  <div class="drawer-pf-notification-info">
+    <span class="date">3/31/16</span>
+    <span class="time">12:12:44 PM</span>
+  </div>
+</div>
+
+            </div>
+            <div class="drawer-pf-action">
+              <button class="btn btn-link btn-block"">Mark All Read</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</nav> <!--/.navbar-->
+<script>
+  $(document).ready(function() {
+    // Show/Hide Notifications Drawer
+    $('.drawer-pf-trigger').click(function() {
+      var $drawer = $('.drawer-pf');
+
+      $(this).toggleClass('open');
+      if ($drawer.hasClass('hide')) {
+        $drawer.removeClass('hide');
+        setTimeout(function () {
+          if (window.dispatchEvent) {
+            window.dispatchEvent(new Event('resize'));
+          }
+          // Special case for IE
+          if ($(document).fireEvent) {
+            $(document).fireEvent('onresize');
+          }
+        }, 100);
+      } else {
+        $drawer.addClass('hide');
+      }
+    });
+    // Mark All Read
+    $('.panel-collapse').each(function (index, panel) {
+      var $panel = $(panel);
+      $panel.on('click', '.drawer-pf-action .btn', function() {
+        $panel.find('.unread').removeClass('unread');
+      });
+    });
+
+    $('#notification-drawer-accordion').initCollapseHeights('.panel-body');
+  });
+</script>
+
+
+  <div class="nav-pf-vertical nav-pf-vertical-with-secondary-nav">
+
+  <ul class="list-group">
+    <li class="list-group-item active">
+      <a href="#">
+        <span class="fa fa-dashboard"></span>
+        <span class="list-group-item-value">Dashboard</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="pficon pficon-cluster"></span>
+        <span class="list-group-item-value">Clusters</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="pficon pficon-screen"></span>
+        <span class="list-group-item-value">Hosts</span>
+      </a>
+    </li>
+    <li class="list-group-item persistent-secondary" data-target="#storage-secondary">
+      <a href="#">
+        <span class="pficon pficon-container-node"></span>
+        <span class="list-group-item-value">Storage</span>
+      </a>
+<div id="storage-secondary" class="nav-pf-persistent-secondary">
+  <div class="persistent-secondary-header">
+    <a class="secondary-collapse-toggle-pf" href="#" data-toggle="collapse-secondary-nav"></a>
+    <span>Storage</span>
+  </div>
+  <h5>File</h5>
+  <ul class="list-group">
+    <li class="list-group-item active">
+      <a href="#">
+        <span class="list-group-item-value">Volumes</span>
+        <div class="badge-container-pf">
+          <div class="badge">
+            <span class="pficon pficon-error-circle-o"></span>
+            <span>1</span>
+          </div>
+          <div class="badge">
+            <span class="pficon pficon-warning-triangle-o"></span>
+            <span>3</span>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Bricks</span>
+        <div class="badge-container-pf">
+          <div class="badge">
+            <span class="pficon pficon-warning-triangle-o"></span>
+            <span>3</span>
+          </div>
+          <span class="badge">12</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Quotas</span>
+        <div class="badge-container-pf">
+          <span class="badge">3</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Logical Volumes</span>
+        <div class="badge-container-pf">
+          <div class="badge">
+            <span class="pficon pficon-error-circle-o"></span>
+            <span>1</span>
+          </div>
+          <span class="badge">10</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <h5>Object</h5>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Pools</span>
+        <div class="badge-container-pf">
+          <span class="badge">10</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">OSDs</span>
+        <div class="badge-container-pf">
+          <div class="badge">
+            <span class="pficon pficon-error-circle-o"></span>
+            <span>1</span>
+          </div>
+          <div class="badge">
+            <span class="pficon pficon-warning-triangle-o"></span>
+            <span>3</span>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <h5>Block</h5>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">RBDs</span>
+        <div class="badge-container-pf">
+          <div class="badge">
+            <span class="pficon pficon-warning-triangle-o"></span>
+            <span>2</span>
+          </div>
+          <span class="badge">14</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Quotas</span>
+        <div class="badge-container-pf">
+          <span class="badge">0</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Snapshots</span>
+        <div class="badge-container-pf">
+          <div class="badge">
+            <span class="pficon pficon-warning-triangle-o"></span>
+            <span>3</span>
+          </div>
+          <span class="badge">9</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Storage Profiles</span>
+        <div class="badge-container-pf">
+          <span class="badge">7</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+    </li>
+    <li class="list-group-item persistent-secondary" data-target="#admin-secondary">
+      <a href="#">
+        <span class="fa fa-cog"></span>
+        <span class="list-group-item-value">Admin</span>
+      </a>
+<div id="admin-secondary" class="nav-pf-persistent-secondary">
+  <div class="persistent-secondary-header">
+    <a class="secondary-collapse-toggle-pf" href="#" data-toggle="collapse-secondary-nav"></a>
+    <span>Admin</span>
+  </div>
+  <h5>User Administration</h5>
+  <ul class="list-group">
+    <li class="list-group-item active">
+      <a href="#">
+        <span class="list-group-item-value">Users</span>
+        <div class="badge-container-pf">
+          <span class="badge">10</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Groups</span>
+        <div class="badge-container-pf">
+          <span class="badge">3</span>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Roles</span>
+        <div class="badge-container-pf">
+          <span class="badge">5</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <h5>Storage</h5>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Local Storage</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">History</span>
+        <div class="badge-container-pf">
+          <span class="badge">0</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+
+  <h5>Preferences</h5>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Appearance</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Notifications</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="#">
+        <span class="list-group-item-value">Sound</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+    </li>
+  </ul>
+</div>
+
+  </body>
+</html>
